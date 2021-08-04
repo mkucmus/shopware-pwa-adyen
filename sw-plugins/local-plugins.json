@@ -1,3 +1,4 @@
 {
-  "my-local-plugin": false
+  "my-local-plugin": false,
+  "adyen-credit-card": true
 }

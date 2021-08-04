@@ -1,0 +1,9 @@
+{
+  "slots": [
+    {
+      "name": "checkout-payment-method-Cards",
+      "file": "AdyenCreditCard.vue"
+    }
+  ],
+  "settings": {}
+}
