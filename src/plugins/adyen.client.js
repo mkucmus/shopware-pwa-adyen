@@ -73,10 +73,18 @@ export default function({ app, $config }, inject) {
     }
 
     // register a plugin in nuxt's context under $adyen alias
+    // thanks to this it can be used anywhere in the application
+    // let's say as an express checkout button on product listing page
     inject('adyen', adyen);   
   }
 
-  app.setup = () => {
+  const { setup } = app;
+  app.setup = function (...args) {
+    let result = {};
+    if (setup instanceof Function) {
+      result = setup(...args) || {};
+    }
+    
     // init an Adyen checkout web component
     // when components are ready
     onMounted(() => initAdyenCheckout());
