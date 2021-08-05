@@ -1,6 +1,5 @@
 import { getContextEndpoint } from "@shopware-pwa/shopware-6-client";
 import { getApplicationContext, useCart, useSessionContext } from "@shopware-pwa/composables";
-import { onMounted } from "@vue/composition-api";
 // sdk for Adyen web components
 import AdyenCheckout from '@adyen/adyen-web';
 // styling
@@ -78,15 +77,5 @@ export default function({ app, $config }, inject) {
     inject('adyen', adyen);   
   }
 
-  const { setup } = app;
-  app.setup = function (...args) {
-    let result = {};
-    if (setup instanceof Function) {
-      result = setup(...args) || {};
-    }
-    
-    // init an Adyen checkout web component
-    // when components are ready
-    onMounted(() => initAdyenCheckout());
-  }
+  process.client && initAdyenCheckout()
 }
